@@ -4,27 +4,38 @@
     "slug": "ElectionCampaignApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./app/assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./app/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
+    "fonts": [
+      {
+        "asset": "./app/assets/fonts/Rubik-Regular.ttf"
+      },
+      {
+        "asset": "./app/assets/fonts/Poppins-Bold.ttf",
+        "fontWeight": "bold"
+      },
+      {
+        "asset": "./app/assets/fonts/Popppins-Medium.ttf",
+        "fontStyle": "bold"
+      }
+    ],
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./app/assets/images/favicon.png"
     }
   }
 }
