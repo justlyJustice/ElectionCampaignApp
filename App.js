@@ -4,7 +4,6 @@ import { navigationRef } from "./app/navigation/rootNavigation";
 import navigationTheme from "./app/navigation/navigationTheme";
 import useFont from "./app/hooks/useFont";
 import LoadingScreen from "./app/screens/LoadingScreen";
-import TabNavigator from "./app/navigation/TabNavigator";
 
 const App = (props) => {
   const { fontsLoaded } = useFont();

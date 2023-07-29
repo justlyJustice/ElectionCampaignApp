@@ -10,7 +10,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Text from "../components/Text";
 import LinearBackground from "../components/LinearBackground";
-import Card from "../components/Card";
+// import Card from "../components/Card";
 
 import items from "../data/candidateItemData";
 
@@ -119,7 +119,7 @@ function CandidateDetailsScreen({ navigation, route }) {
               data={items}
               keyExtractor={(individualItem) => individualItem.id.toString()}
               renderItem={({ item }) => (
-                <Card
+                <View
                   cardColor={item.cardColor}
                   icon={item.icon}
                   text={item.text}

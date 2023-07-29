@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import Wrapper from "../components/Wrapper";
+import ScreenWrapper from "../components/ScreenWrapper";
 import CategoryCard from "../components/cards/CategoryCard";
 import routes from "../navigation/routes";
 
 function AspirantsCategoryScreen({ navigation }) {
   return (
-    <Wrapper>
+    <ScreenWrapper>
       <View style={styles.container}>
         <CategoryCard
           bodyText="Presidential candidates from the various parties accross the nation."
@@ -23,7 +23,7 @@ function AspirantsCategoryScreen({ navigation }) {
           iconName="account-supervisor-circle"
         />
       </View>
-    </Wrapper>
+    </ScreenWrapper>
   );
 }
 
