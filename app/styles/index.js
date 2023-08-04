@@ -20,7 +20,6 @@ const tabScreenOptions = {
   headerShown: false,
   headerTitleStyle: {
     fontFamily: "PoppinsBold",
-    // fontSize:,
   },
   headerShadowVisible: false,
   // headerTransparent: true,

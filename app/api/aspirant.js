@@ -1,7 +1,9 @@
 import client from "./client";
 
-const getAspirant = async () => client.get("/aspirants");
+const getAspirants = async () => client.get("/aspirants");
 
-const getAspirantData = async () => client.get("/aspirants?populate=*");
+const getAspirant = async (id) => client.get("/aspirants/" + id);
 
-export default { getAspirant, getAspirantData };
+const createAspirant = async (aspirant) => client.post("/aspirants", aspirant);
+
+export default { createAspirant, getAspirant, getAspirants };

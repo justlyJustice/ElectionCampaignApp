@@ -23,7 +23,6 @@ function ScreenWrapper({ children }) {
 
 const styles = StyleSheet.create({
   background: {
-    alignItems: "center",
     backgroundColor: colors.white,
     flex: 1,
   },

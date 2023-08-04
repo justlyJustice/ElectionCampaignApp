@@ -4,14 +4,14 @@ import colors from "../config/colors";
 export default [
   {
     id: 1,
-    cardColor: colors.darkGreen,
+    cardColor: colors.olive,
     icon: {
-      name: "trophy-outline",
+      name: "award",
       color: colors.white,
     },
     text: {
       color: colors.white,
-      title: "Agenda",
+      title: "Previous Achievements",
     },
     route: routes.AGENDA,
   },
@@ -24,7 +24,7 @@ export default [
     },
     text: {
       color: colors.black,
-      title: "Blueprint",
+      title: "Agenda",
     },
     route: routes.BLUEPRINT,
   },
@@ -39,7 +39,7 @@ export default [
       color: colors.black,
       title: "Social Responsibility",
     },
-    route: routes.SOCIAL_RESPONSIBILITY,
+    // route: routes.SOCIAL_RESPONSIBILITY,
   },
   {
     id: 4,

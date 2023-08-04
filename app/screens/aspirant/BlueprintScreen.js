@@ -1,32 +1,32 @@
-import React from "react";
 import { Image, View, ScrollView, StyleSheet } from "react-native";
 
-import colors from "../config/colors";
-import LinearBackground from "../components/LinearBackground";
-import Text from "../components/Text";
+import LinearBackground from "../../components/LinearBackground";
+import Text from "../../components/Text";
+
+import colors from "../../config/colors";
 
 function BlueprintScreen({ route }) {
-  const { user } = route.params;
   return (
     <LinearBackground colors={[colors.primary, colors.darkGreen]}>
       <View style={styles.container}>
-        <View style={styles.screenIndicator}>
-          <Text style={styles.text}>Blueprint - {user.name}</Text>
+        <View style={styles.topTextContain}>
+          <Text style={styles.title}>Blueprint</Text>
+          <Text style={styles.desc}>Oyeinnoah Paris</Text>
         </View>
 
         <ScrollView style={styles.view}>
-          <Text
-            style={{ color: "#676767", fontSize: 15, textAlign: "justify" }}
+          {/* <Text
+            style={{ color: , fontSize: 15, textAlign: "justify" }}
           >
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias
             voluptates ad hic. Quasi deleniti ea ratione optio reprehenderit eos
             rerum earum animi tenetur. Adipisci vel aperiam dolorem, aut
             laudantium ducimus suscipit qui voluptates molestias debitis
             reiciendis rem iste, asperiores impedit fugit vero ex ipsam maiores
-          </Text>
+          </Text> */}
 
           <Image
-            source={require("../assets/images/engineer.png")}
+            source={require("../../assets/images/engineer.png")}
             style={{ height: 249, width: 250 }}
           />
 
@@ -48,29 +48,30 @@ function BlueprintScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
-    height: 700,
+    flex: 1,
+    paddingHorizontal: 20,
     width: "100%",
-    top: 60,
+    // top: 60,
   },
-  screenIndicator: {
-    alignSelf: "flex-start",
-    alignItems: "center",
-    backgroundColor: colors.darkGreen,
-    borderRadius: 5,
-    bottom: 10,
-    elevation: 5,
-    height: 22,
-    justifyContent: "center",
-    paddingHorizontal: 14,
-    left: 26,
+  desc: {
+    color: colors.medium,
+    fontFamily: "Inter",
+    fontSize: 16,
   },
   text: {
     color: colors.white,
     fontSize: 12,
-    fontWeight: "bold",
+  },
+
+  title: {
+    fontFamily: "PoppinsBold",
+    fontSize: 22,
+  },
+  topTextContain: {
+    marginVertical: 20,
   },
   view: {
-    paddingHorizontal: 50,
+    paddingHorizontal: 20,
   },
 });
 

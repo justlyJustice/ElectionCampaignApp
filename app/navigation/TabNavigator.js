@@ -1,47 +1,59 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 
-import AspirantsNavigator from "./AspirantsNavigator";
-import CandidateDetailsScreen from "../screens/CandidateDetailsScreen";
-import {
-  tabScreenOptions,
-  headerOptionsStyle,
-  tabNavScreenOptions,
-} from "../styles";
+import CandidateNavigator from "./CandidateNavigator";
+
+// import {
+//   tabScreenOptions,
+//   headerOptionsStyle,
+//   tabNavScreenOptions,
+// } from "../styles";
 import FeedsScreen from "../screens/FeedsScreen";
-import HeaderLeftIcon from "../components/HeaderLeftIcon";
-import colors from "../config/colors";
+
 import LiveStreamButton from "./LiveStreamButton";
+import { tabNavScreenOptions, tabScreenOptions } from "../styles";
+import colors from "../config/colors";
+import FeedNavigator from "./FeedNavigator";
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator
+      screenOptions={{
+        ...tabNavScreenOptions,
+        headerShown: false,
+        tabBarShowLabel: false,
+      }}
+    >
       <Tab.Screen
         name="Home"
-        component={FeedsScreen}
+        component={FeedNavigator}
         options={{
-          tabBarLabel: "Feed",
-          tabBarIcon: ({ size, color }) => (
-            <Feather name="home" size={size} color={color} />
+          ...tabScreenOptions,
+          tabBarShowLabel: false,
+          tabBarIcon: ({ size, color, focused }) => (
+            <Feather
+              name="home"
+              size={size}
+              color={focused ? colors.olive : colors.medium}
+            />
           ),
         }}
       />
-      <Tab.Screen
-        name="Live"
-        component={CandidateDetailsScreen}
-        options={{
-          tabBarButton: () => <LiveStreamButton />,
-        }}
-      />
+
       <Tab.Screen
         name="Candidate"
-        component={CandidateDetailsScreen}
+        component={CandidateNavigator}
         options={{
+          ...tabScreenOptions,
           tabBarLabel: "Profile",
-          tabBarIcon: ({ size, color }) => (
-            <Feather name="user" size={size} color={color} />
+          tabBarIcon: ({ size, focused }) => (
+            <Feather
+              name="user"
+              size={size}
+              color={focused ? colors.olive : colors.medium}
+            />
           ),
         }}
       />

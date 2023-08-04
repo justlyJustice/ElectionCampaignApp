@@ -8,6 +8,7 @@ import { Feather } from "@expo/vector-icons";
 
 import Text from "./Text";
 import colors from "../config/colors";
+import Button from "./Button";
 
 function FeedCard({ title, subTitle, imageUrl, onPress }) {
   return (
@@ -28,11 +29,18 @@ function FeedCard({ title, subTitle, imageUrl, onPress }) {
             {subTitle}
           </Text>
 
-          {/* <View style={styles.bottomContent}>
-            <Text>
-              <Feather name="calendar" />
-            </Text>
-          </View> */}
+          <View style={styles.bottomContent}>
+            <Button
+              onPress={onPress}
+              backgroundColor="secondary"
+              title="View Feed"
+              textColor="medium"
+              style={styles.btn}
+            />
+
+            {/* <Feather name="arrow-right" size={20} />
+            </Button> */}
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -42,6 +50,10 @@ function FeedCard({ title, subTitle, imageUrl, onPress }) {
 const styles = StyleSheet.create({
   bottomContent: {
     marginTop: 10,
+  },
+  btn: {
+    // fontFamily: "InterBold",
+    width: "40%",
   },
   card: {
     borderRadius: 15,
@@ -64,6 +76,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "PoppinsBold",
+    textTransform: "capitalize",
   },
 });
 

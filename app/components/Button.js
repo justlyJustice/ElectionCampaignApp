@@ -5,34 +5,44 @@ import Text from "./Text";
 import colors from "../config/colors";
 
 function AppButton({
-  backgroundColor = colors.primary,
-  style,
-  textColor = "white",
+  backgroundColor = "secondary",
   onPress,
+  children,
+  style,
+  textColor,
   title,
 }) {
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor }, style]}
+      style={[
+        styles.button,
+        { backgroundColor: colors[backgroundColor] },
+        style,
+      ]}
       onPress={onPress}
     >
-      <Text style={[styles.text, { color: colors[textColor] }]}>{title}</Text>
+      <Text style={[styles.text, { color: colors[textColor] }]}>
+        {children ? children : title}
+      </Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
+    // paddingVertical: 8,
+    // paddingHorizontal: 12,
     borderRadius: 5,
-    height: 35,
+    alignItems: "center",
+    height: 40,
     justifyContent: "center",
     width: "100%",
     marginVertical: 10,
   },
   text: {
-    fontSize: 12,
-    fontWeight: "700",
+    color: colors.black,
+    fontFamily: "InterMedium",
+    fontSize: 14,
     textAlign: "center",
   },
 });

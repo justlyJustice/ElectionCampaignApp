@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, ScrollView } from "react-native";
 import Constants from "expo-constants";
 
 function Screen({ children, style }) {
@@ -12,7 +12,6 @@ function Screen({ children, style }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 15,
   },
   safeArea: {
     flex: 1,

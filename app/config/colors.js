@@ -5,6 +5,8 @@ export default {
   light: "#676767",
   primary: "#78FF48",
   secondary: "#FEDD8A",
+  secondary_100: "#FD8D14",
+  olive: "#A3BB98",
   white: "#ffffff",
   medium: "#6e6969",
   danger: "#ff5252",
