@@ -26,6 +26,7 @@ import routes from "../navigation/routes";
 import useApi from "../hooks/useApi";
 import ActivityIndicator from "../components/ActivityIndicator";
 import Button from "../components/Button";
+import settings from "../config/settings";
 
 function CandidateProfileScreen({ navigation, route }) {
   const { _id } = route.params;
@@ -57,7 +58,11 @@ function CandidateProfileScreen({ navigation, route }) {
         <View style={styles.topContainer}>
           <>
             <Image
-              source={require("../assets/images/candidate.jpg")}
+              source={
+                !aspirant.avatar
+                  ? require("../assets/images/candidate.jpg")
+                  : { uri: `${settings.imageUrl}/${aspirant.avatar}` }
+              }
               style={styles.candidateImage}
             />
           </>
