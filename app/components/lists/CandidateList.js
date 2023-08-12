@@ -4,7 +4,6 @@ import navigation from "../../navigation/rootNavigation";
 import routes from "../../navigation/routes";
 
 import Candidate from "../Candidate";
-import { imageUrl } from "../../config/url";
 
 function CandidateList({ candidates }) {
   return (
@@ -15,14 +14,13 @@ function CandidateList({ candidates }) {
         backgroundColor: "orange",
         width: "100%",
         padding: 10,
-        // justifyContent: "space-between",
       }}
       renderItem={({ item }) => (
         <Candidate
           candidateName={item.name}
           contestingParty={item.party}
           onPress={() => navigation.navigate(routes.CANDIDATE_PROFILE, item)}
-          image={`${imageUrl}/public/uploads/${item.avatar}`}
+          image={item.avatar}
         />
       )}
       numColumns={2}

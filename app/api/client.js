@@ -4,10 +4,10 @@ import { create } from "apisauce";
 // import authStorage from "../auth/storage";
 import cache from "../utility/cache";
 
-import baseURL from "../config/url";
+import settings from "../config/settings";
 
 const apiClient = create({
-  baseURL,
+  baseURL: settings.apiUrl,
 });
 
 apiClient.axiosInstance.interceptors.request.use(null, (error) => {

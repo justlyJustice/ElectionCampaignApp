@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ElectionCampaignApp",
-    "slug": "ElectionCampaignApp",
+    "name": "CampaignHub",
+    "slug": "CampaignHub",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/images/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -22,15 +20,11 @@
         "foregroundImage": "./app/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.justlyjohn.ElectionCampaignApp"
+      "versionCode": 1,
+      "package": "com.justlyjohn.campaignhub"
     },
     "web": {
       "favicon": "./app/assets/images/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "c74f8d3e-01da-4730-907c-7eff27b6a05d"
-      }
     },
     "owner": "justlyjohn",
     "runtimeVersion": {

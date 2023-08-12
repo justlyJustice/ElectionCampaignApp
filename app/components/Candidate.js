@@ -9,6 +9,8 @@ import {
 import Text from "../components/Text";
 import colors from "../config/colors";
 
+import settings from "../config/settings";
+
 function Candidate({
   image,
   candidateName = "Joel Justice",
@@ -30,7 +32,7 @@ function Candidate({
           {image && (
             <Image
               resizeMode="cover"
-              source={{ uri: image }}
+              source={{ uri: `${settings.imageUrl}/${image}` }}
               style={styles.image}
             />
           )}
