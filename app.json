@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -36,6 +34,18 @@
       "eas": {
         "projectId": "9b814e0a-d644-47ac-a38e-1a20c5dc329b"
       }
+    },
+    "plugins": ["sentry-expo"],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "bougbai-computers-netware",
+            "project": "campaignhub"
+          }
+        }
+      ]
     }
   }
 }

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import logger from "../utility/logger";
+
 const useApi = (apiFunc) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
@@ -10,7 +12,10 @@ const useApi = (apiFunc) => {
     const res = await apiFunc(...args);
     setLoading(false);
 
-    if (!res.ok) return setError(true);
+    if (!res.ok) {
+      logger.log(res);
+      return setError(true);
+    }
 
     setError(false);
     setData(res.data.data);
