@@ -66,6 +66,7 @@ function FeedsScreen({ navigation }) {
               onPress={() =>
                 navigation.navigate(routes.FEED_DETAILS_SCREEN, feed)
               }
+              image={feed.image}
             />
           ))}
         </ScrollView>

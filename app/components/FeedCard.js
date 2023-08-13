@@ -4,19 +4,24 @@ import {
   Image,
   TouchableWithoutFeedback,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
 
 import Text from "./Text";
 import colors from "../config/colors";
 import Button from "./Button";
 
-function FeedCard({ title, subTitle, imageUrl, onPress }) {
+import settings from "../config/settings";
+
+function FeedCard({ title, subTitle, image, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <Image
           style={styles.image}
-          source={require("../assets/images/candidate.jpg")}
+          source={
+            image
+              ? { uri: `${settings.imageUrl}/${image}` }
+              : require("../assets/images/candidate.jpg")
+          }
           resizeMode="cover"
         />
 

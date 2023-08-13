@@ -1,9 +1,10 @@
 import { View, Image, StyleSheet } from "react-native";
 
 import colors from "../config/colors";
-// import ListItem from "../components/lists/ListItem";
+
 import Text from "../components/Text";
 import ScreenWrapper from "../components/ScreenWrapper";
+import settings from "../config/settings";
 
 function FeedDetailsScreen({ route }) {
   const feed = route.params;
@@ -12,7 +13,11 @@ function FeedDetailsScreen({ route }) {
     <ScreenWrapper>
       <Image
         style={styles.image}
-        source={require("../assets/images/candidate.jpg")}
+        source={
+          feed.image
+            ? { uri: `${settings.imageUrl}/${feed.image}` }
+            : require("../assets/images/candidate.jpg")
+        }
       />
 
       <View style={styles.detailsContainer}>
