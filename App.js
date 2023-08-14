@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as Sentry from "sentry-expo";
 
 Sentry.init({
-  dsn: "https://aefd44c6cc39339aa24d0ff91d2035f0@o518596.ingest.sentry.io/4505699540074496",
+  dsn: "https://c6b70cb1fe445aa4c92cdd84acadf943@o518596.ingest.sentry.io/4505699721478144",
   enableInExpoDevelopment: true,
   debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
