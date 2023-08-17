@@ -1,11 +1,9 @@
-import { useState } from "react";
 import {
   FlatList,
   Image,
   View,
   StyleSheet,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
+  TouchableHighlight,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -21,97 +19,83 @@ import settings from "../config/settings";
 function CandidateDetailsScreen({ navigation, route }) {
   const { candidate } = route.params;
 
-  const [visible, setVisible] = useState(false);
-  const [imageModalVisible, setImageModalVisible] = useState(false);
-  const [imageUri, setImageUri] = useState("");
-
   return (
     <LinearBackground colors={[colors.white, colors.white]}>
+      <View style={{ alignSelf: "center" }}>
+        <View style={styles.avatarView}>
+          {candidate.avatar ? (
+            <Image
+              resizeMode="cover"
+              source={{ uri: `${settings.imageUrl}/${candidate.avatar}` }}
+              style={styles.candidateImage}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name="account"
+              size={80}
+              color={colors.light}
+            />
+          )}
+        </View>
+      </View>
+
       <View style={styles.containView}>
-        <View style={styles.candidateDetailContain}>
-          <View style={{ alignItems: "center", top: -40 }}>
-            <View style={styles.avatarView}>
-              {candidate.avatar ? (
-                <Image
-                  resizeMode="cover"
-                  source={{ uri: `${settings.imageUrl}/${candidate.avatar}` }}
-                  style={styles.candidateImage}
-                />
-              ) : (
-                <MaterialCommunityIcons
-                  name="account"
-                  size={80}
-                  color={colors.light}
-                />
-              )}
+        <View style={styles.nameContain}>
+          <Text style={styles.candidateName}>{candidate.name}</Text>
+
+          <View style={styles.positionsContain}>
+            <View style={styles.item}>
+              <Text style={styles.smallText}>Vying for:</Text>
+              <Text style={styles.mediumText}>
+                {candidate.aspiring_position}
+              </Text>
+            </View>
+
+            <View style={styles.item}>
+              <Text style={styles.smallText}>Party:</Text>
+              <Text style={styles.mediumText}>{candidate.party}</Text>
+            </View>
+          </View>
+        </View>
+
+        <TouchableHighlight style={{ width: "70%" }}>
+          <View style={styles.fullCard}>
+            <View style={{ width: "70%" }}>
+              <Text style={styles.fullText}>Personal Profile</Text>
+              <Text style={styles.descriptionText} numberOfLines={4}>
+                View the candidate profile shows more of the contesting
+                candidate.
+              </Text>
             </View>
 
             <View>
-              <View style={styles.nameContain}>
-                <Text style={styles.candidateName}>{candidate.name}</Text>
-              </View>
-
-              <View style={styles.positionsContain}>
-                <View style={styles.item}>
-                  <Text style={styles.smallText}>Current Position:</Text>
-                  <Text style={styles.mediumText}>
-                    {candidate.current_position}
-                  </Text>
-                </View>
-
-                <View style={styles.item}>
-                  <Text style={styles.smallText}>Vying for:</Text>
-                  <Text style={styles.mediumText}>
-                    {candidate.aspiring_position}
-                  </Text>
-                </View>
-
-                <View style={styles.item}>
-                  <Text style={styles.smallText}>Party:</Text>
-                  <Text style={styles.mediumText}>{candidate.party}</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <TouchableWithoutFeedback>
-            <View style={styles.fullCard}>
-              <View>
-                <Text style={styles.fullText}>Profile</Text>
-                <Text style={styles.descriptionText} numberOfLines={4}></Text>
-              </View>
-
               <MaterialCommunityIcons
                 name="account-circle"
                 size={70}
-                color="rgba(120, 255, 72, 0.2)"
-                style={{
-                  alignSelf: "center",
-                  justifyContent: "center",
-                  left: 12,
-                }}
+                color={colors.darkGreen}
               />
             </View>
-          </TouchableWithoutFeedback>
-
-          <View>
-            <FlatList
-              data={items}
-              keyExtractor={(individualItem) => individualItem.id.toString()}
-              renderItem={({ item }) => (
-                <Card
-                  cardColor={item.cardColor}
-                  icon={item.icon}
-                  text={item.text}
-                  onPress={() =>
-                    navigation.navigate(item.route, { user: route.params })
-                  }
-                />
-              )}
-              numColumns={2}
-            />
           </View>
-        </View>
+        </TouchableHighlight>
+
+        <FlatList
+          data={items}
+          contentContainerStyle={{
+            columnGap: 2,
+          }}
+          keyExtractor={(individualItem) => individualItem.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              cardColor={item.cardColor}
+              icon={item.icon}
+              text={item.text}
+              onPress={() =>
+                navigation.navigate(item.route, { user: route.params })
+              }
+            />
+          )}
+          numColumns={2}
+        />
       </View>
     </LinearBackground>
   );
@@ -129,64 +113,49 @@ const styles = StyleSheet.create({
   candidateDetailContain: {
     alignItems: "center",
     bottom: 40,
+    flex: 1,
     width: "100%",
+    zIndex: -1,
   },
   candidateName: {
-    // color: colors.1,
     fontFamily: "PoppinsBold",
     fontSize: 20,
+    marginTop: 5,
   },
   candidateImage: {
     height: "100%",
     width: "100%",
   },
-  commentButton: {
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "rgba(229, 229, 229, 0.6)",
-    borderRadius: 20,
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: 2,
-    width: 160,
-  },
-  commentIcon: {
-    color: "rgba(229, 229, 229, 0.6)",
-    fontSize: 15,
-    marginRight: 8,
-  },
   containView: {
     alignItems: "center",
     backgroundColor: colors.secondary,
-    position: "absolute",
+    flex: 1,
+    paddingTop: 40,
     width: "100%",
-    height: 700,
-    left: 0,
-    top: 154,
   },
   descriptionText: {
-    color: "#676767",
-    fontSize: 10,
-    width: 127,
+    fontFamily: "Inter",
+    fontSize: 11,
   },
   fullCard: {
     backgroundColor: colors.white,
-    borderColor: "rgba(120, 255, 72, 0.2)",
+    borderColor: colors.primary,
     borderRadius: 10,
     borderWidth: 2,
-    elevation: 8,
+    elevation: 10,
     flexDirection: "row",
-    height: 100,
-    marginVertical: 20,
-    width: 248,
+    justifyContent: "space-between",
+    marginBottom: 10,
     padding: 15,
+    paddingHorizontal: 20,
   },
   fullText: {
     color: colors.darkGreen,
-    fontSize: 15,
+    fontFamily: "PoppinsBold",
+    fontSize: 18,
   },
   item: {
-    marginHorizontal: 15,
+    marginHorizontal: 18,
   },
   mediumText: {
     color: "#676767",
@@ -194,8 +163,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   nameContain: {
-    // flexDirection: "row",
-    alignItems: "center",
+    marginBottom: 15,
   },
   positionsContain: {
     alignSelf: "flex-start",
@@ -207,6 +175,10 @@ const styles = StyleSheet.create({
     fontFamily: "InterMedium",
     fontSize: 12,
     textAlign: "center",
+  },
+  textContain: {
+    marginVertical: 10,
+    width: "100%",
   },
 });
 

@@ -27,7 +27,7 @@ function CandidatesScreen({ route }) {
   if (error)
     return (
       <>
-        <Text>Couldn't get the list of candidates!.</Text>
+        <Text>Couldn't get the list of candidate!.</Text>
         <Button title="Retry" onPress={loadCandidates} />
       </>
     );
@@ -39,9 +39,9 @@ function CandidatesScreen({ route }) {
       <ScreenWrapper back>
         <View style={styles.container}>
           <View style={styles.topTextContain}>
-            <Text style={styles.title}>Election Candidates</Text>
+            <Text style={styles.title}>Election Candidate</Text>
             <Text style={styles.desc}>
-              View candidates' political profile, blueprints and more.
+              View candidate political profile, previous achievements and more.
             </Text>
           </View>
 

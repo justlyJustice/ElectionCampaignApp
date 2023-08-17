@@ -11,36 +11,11 @@ export default [
     },
     text: {
       color: colors.white,
-      title: "Previous Achievements",
+      title: "Blueprint",
     },
-    route: routes.AGENDA,
+    route: routes.BLUEPRINT_SCREEN,
   },
-  {
-    id: 2,
-    cardColor: colors.primary,
-    icon: {
-      name: "office-building",
-      color: colors.black,
-    },
-    text: {
-      color: colors.black,
-      title: "Agenda",
-    },
-    route: routes.BLUEPRINT,
-  },
-  {
-    id: 3,
-    cardColor: colors.primary,
-    icon: {
-      name: "account-plus",
-      color: colors.black,
-    },
-    text: {
-      color: colors.black,
-      title: "Social Responsibility",
-    },
-    // route: routes.SOCIAL_RESPONSIBILITY,
-  },
+
   {
     id: 4,
     cardColor: colors.darkGreen,
@@ -50,7 +25,7 @@ export default [
     },
     text: {
       color: colors.white,
-      title: "Quotes",
+      title: "Previous Achievements",
     },
     route: routes.QUOTES,
   },

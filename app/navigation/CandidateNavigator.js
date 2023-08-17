@@ -10,7 +10,8 @@ const Stack = createNativeStackNavigator();
 const CandidateNavigator = (props) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Candidates" component={CandidatesScreen} />
+      <Stack.Screen name="Home" component={CandidatesScreen} />
+
       <Stack.Screen
         name="CandidateProfile"
         component={CandidateProfileScreen}
@@ -18,10 +19,10 @@ const CandidateNavigator = (props) => {
 
       <Stack.Screen name="Blueprint" component={BlueprintScreen} />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="PreviousAchievements"
         component={PreviousAchievementsScreen}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

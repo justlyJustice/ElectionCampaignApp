@@ -11,13 +11,7 @@ import colors from "../config/colors";
 
 import settings from "../config/settings";
 
-function Candidate({
-  candidate,
-  // avatar,
-  // candidateName = "Joel Justice",
-  // contestingParty = "BCN",
-  onPress,
-}) {
+function Candidate({ candidate, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
@@ -49,7 +43,9 @@ function Candidate({
           <Text style={styles.candidateName}>
             {candidate.name}
             {"\n"}
-            <Text style={styles.candidateParty}>{candidate.party}</Text>
+            <Text style={styles.candidateParty}>
+              {candidate.aspiring_position + ", " + candidate.party}
+            </Text>
           </Text>
         </>
       </View>
@@ -66,13 +62,11 @@ const styles = StyleSheet.create({
   },
   candidateParty: {
     fontSize: 12,
-    fontFamily: "InterMedium",
+    fontFamily: "PoppinsMedium",
   },
   container: {
     alignItems: "center",
-    // backgroundColor: "red",
     borderRadius: 10,
-    // height: 120,
     marginHorizontal: 10,
     overflow: "hidden",
     width: "45%",
@@ -80,7 +74,7 @@ const styles = StyleSheet.create({
   box: {
     borderRadius: 8,
     width: 150,
-    height: 130,
+    height: 140,
   },
   image: {
     borderRadius: 20,

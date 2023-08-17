@@ -14,7 +14,7 @@ function WelcomeScreen({ navigation }) {
       <View style={styles.container}>
         <CategoryCard
           bodyText="Know election candidates and what their political profile proposes"
-          titleText="VIEW CANDIDATES"
+          titleText="VIEW CANDIDATE"
           onPress={() => navigation.navigate(routes.CANDIDATES_SCREEN)}
           iconName="account"
         />
@@ -41,7 +41,8 @@ function WelcomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   hr: {
     borderColor: colors.light,
-    borderWidth: 0.2,
+    borderRadius: 20,
+    borderWidth: 0.4,
     marginVertical: 10,
     width: "100%",
   },

@@ -25,11 +25,7 @@ function CategoryCard({
 
         <View style={styles.contentView}>
           <Text style={styles.title}>{titleText}</Text>
-          {bodyText && (
-            <Text style={styles.body} numberOfLines={1}>
-              {bodyText}
-            </Text>
-          )}
+          {bodyText && <Text style={styles.body}>{bodyText}</Text>}
         </View>
       </View>
     </TouchableNativeFeedback>
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
   body: {
     fontFamily: "InterMedium",
     fontSize: 12,
-    lineHeight: 11,
+    // lineHeight: 12,
     width: "90%",
   },
   contentView: {
