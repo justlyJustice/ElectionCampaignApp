@@ -25,39 +25,7 @@ const TabNavigator = () => {
         headerShown: false,
         tabBarShowLabel: false,
       }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={FeedNavigator}
-        options={{
-          ...tabScreenOptions,
-          tabBarShowLabel: false,
-          tabBarIcon: ({ size, color, focused }) => (
-            <Feather
-              name="home"
-              size={size}
-              color={focused ? colors.olive : colors.medium}
-            />
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Candidate"
-        component={CandidateNavigator}
-        options={{
-          ...tabScreenOptions,
-          tabBarLabel: "Profile",
-          tabBarIcon: ({ size, focused }) => (
-            <Feather
-              name="user"
-              size={size}
-              color={focused ? colors.olive : colors.medium}
-            />
-          ),
-        }}
-      />
-    </Tab.Navigator>
+    ></Tab.Navigator>
   );
 };
 

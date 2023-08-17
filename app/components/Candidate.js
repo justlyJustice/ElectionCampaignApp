@@ -12,16 +12,17 @@ import colors from "../config/colors";
 import settings from "../config/settings";
 
 function Candidate({
-  image,
-  candidateName = "Joel Justice",
-  contestingParty = "BCN",
+  candidate,
+  // avatar,
+  // candidateName = "Joel Justice",
+  // contestingParty = "BCN",
   onPress,
 }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.topContain}>
-          {!image && (
+          {!candidate.avatar && (
             <LinearGradient
               colors={["#f0f0f0", "#c0c0c0"]}
               locations={[0.4, 0.8]}
@@ -29,19 +30,26 @@ function Candidate({
             />
           )}
 
-          {image && (
-            <Image
-              resizeMode="cover"
-              source={{ uri: `${settings.imageUrl}/${image}` }}
-              style={styles.image}
-            />
+          {candidate.avatar && (
+            <View style={styles.box}>
+              <Image
+                resizeMode="cover"
+                source={
+                  candidate.avatar
+                    ? { uri: `${settings.imageUrl}/${candidate.avatar}` }
+                    : require("../assets/images/candidate.jpg")
+                }
+                style={styles.image}
+              />
+            </View>
           )}
         </View>
 
         <>
           <Text style={styles.candidateName}>
-            {candidateName} -{" "}
-            <Text style={styles.candidateParty}>{contestingParty}</Text>
+            {candidate.name}
+            {"\n"}
+            <Text style={styles.candidateParty}>{candidate.party}</Text>
           </Text>
         </>
       </View>
@@ -62,21 +70,22 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: "center",
-    backgroundColor: "red",
+    // backgroundColor: "red",
     borderRadius: 10,
-    height: "100%",
+    // height: 120,
     marginHorizontal: 10,
+    overflow: "hidden",
     width: "45%",
   },
   box: {
     borderRadius: 8,
-    width: "100%",
-    height: 120,
+    width: 150,
+    height: 130,
   },
   image: {
     borderRadius: 20,
     width: "100%",
-    height: 120,
+    height: "100%",
   },
   topContain: {
     marginBottom: 8,

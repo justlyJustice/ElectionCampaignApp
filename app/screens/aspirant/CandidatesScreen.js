@@ -36,9 +36,14 @@ function CandidatesScreen({ route }) {
     <>
       <ActivityIndicator visible={loading} />
 
-      <ScreenWrapper>
+      <ScreenWrapper back>
         <View style={styles.container}>
-          <Text style={styles.title}>View Candidates' Profile</Text>
+          <View style={styles.topTextContain}>
+            <Text style={styles.title}>Election Candidates</Text>
+            <Text style={styles.desc}>
+              View candidates' political profile, blueprints and more.
+            </Text>
+          </View>
 
           <View style={styles.candidatsContaner}>
             <CandidateList candidates={candidates} />
@@ -50,15 +55,24 @@ function CandidatesScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
-  candidatsContaner: {},
-  container: {},
   title: {
-    color: colors.black,
-    fontSize: 20,
     fontFamily: "PoppinsBold",
-    // fontWeight: "700",
-    lineHeight: 30,
+    fontSize: 22,
+  },
+  desc: {
+    color: colors.medium,
+    fontFamily: "Inter",
+    fontSize: 16,
     textAlign: "center",
+  },
+  title: {
+    fontFamily: "PoppinsBold",
+    fontSize: 22,
+  },
+  topTextContain: {
+    alignItems: "center",
+    marginBottom: 10,
+    width: "100%",
   },
 });
 

@@ -25,7 +25,11 @@ function CategoryCard({
 
         <View style={styles.contentView}>
           <Text style={styles.title}>{titleText}</Text>
-          {bodyText && <Text style={styles.body}>{bodyText}</Text>}
+          {bodyText && (
+            <Text style={styles.body} numberOfLines={1}>
+              {bodyText}
+            </Text>
+          )}
         </View>
       </View>
     </TouchableNativeFeedback>
@@ -39,29 +43,33 @@ const styles = StyleSheet.create({
     elevation: 3,
     flexDirection: "row",
     height: 120,
-    /*  justifyContent: "space-between", */
     marginVertical: 10,
     padding: 30,
     width: "100%",
   },
+
   body: {
-    fontStyle: "italic",
+    fontFamily: "InterMedium",
     fontSize: 12,
-    fontWeight: "600",
-    lineHeight: 15,
-    width: "60%",
+    lineHeight: 11,
+    width: "90%",
   },
   contentView: {
-    /*   marginHorizontal: 10, */
+    lineHeight: 0,
+    paddingRight: 20,
+    width: "100%",
+  },
+  iconDiv: {
+    // marginRight: 10,
   },
   icon: {
-    fontSize: 50,
+    fontSize: 40,
     marginRight: 10,
   },
   title: {
     color: colors.white,
-    fontWeight: "700",
-    fontSize: 14,
+    fontFamily: "PoppinsBold",
+    fontSize: 16,
   },
 });
 

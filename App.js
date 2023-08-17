@@ -13,15 +13,20 @@ import { navigationRef } from "./app/navigation/rootNavigation";
 import navigationTheme from "./app/navigation/navigationTheme";
 import useFont from "./app/hooks/useFont";
 import LoadingScreen from "./app/screens/LoadingScreen";
+import AuthProvider from "./app/auth/context";
+import { useState } from "react";
 
 const App = (props) => {
   const { fontsLoaded } = useFont();
+  const [user, setUser] = useState(null);
 
   if (!fontsLoaded) return <LoadingScreen />;
 
   return (
     <NavigationContainer ref={navigationRef} theme={navigationTheme}>
-      <AppNavigator />
+      <AuthProvider values={{ user, setUser }}>
+        <AppNavigator />
+      </AuthProvider>
     </NavigationContainer>
   );
 };

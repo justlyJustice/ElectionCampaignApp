@@ -23,10 +23,17 @@ const useApi = (apiFunc) => {
     return res;
   };
 
+  const refetch = (...args) => {
+    setLoading(true);
+
+    request(...args);
+  };
+
   return {
     data,
     error,
     loading,
+    refetch,
     request,
   };
 };

@@ -1,235 +1,213 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import {
-  // FlatList,
-  // Pressable,
+  FlatList,
   Image,
   View,
   StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Text from "../components/Text";
 import LinearBackground from "../components/LinearBackground";
-// import Card from "../components/Card";
+import Card from "../components/Card.js";
 
-// import items from "../data/candidateItemData";
-
-import colors from "../config/colors";
-import ScreenWrapper from "../components/ScreenWrapper";
-// import IconCard from "../components/cards/IconCard";
-import FullCard from "../components/cards/FullCard";
-
-import aspirantApi from "../api/aspirant";
-
+import items from "../data/candidateItemData";
 import routes from "../navigation/routes";
-
-import useApi from "../hooks/useApi";
-import ActivityIndicator from "../components/ActivityIndicator";
-import Button from "../components/Button";
+import colors from "../config/colors";
 import settings from "../config/settings";
 
-function CandidateProfileScreen({ navigation, route }) {
-  const { _id } = route.params;
+function CandidateDetailsScreen({ navigation, route }) {
+  const { candidate } = route.params;
 
-  const {
-    request: loadCandidate,
-    loading,
-    data: aspirant,
-    error,
-  } = useApi(aspirantApi.getAspirant);
-
-  useEffect(() => {
-    loadCandidate(_id);
-  }, []);
-
-  if (error)
-    return (
-      <>
-        <Text>Couldn't get the list of candidates!.</Text>
-        <Button title="Retry" onPress={loadCandidate} />
-      </>
-    );
+  const [visible, setVisible] = useState(false);
+  const [imageModalVisible, setImageModalVisible] = useState(false);
+  const [imageUri, setImageUri] = useState("");
 
   return (
-    <ScreenWrapper>
-      <ActivityIndicator visible={loading} />
+    <LinearBackground colors={[colors.white, colors.white]}>
+      <View style={styles.containView}>
+        <View style={styles.candidateDetailContain}>
+          <View style={{ alignItems: "center", top: -40 }}>
+            <View style={styles.avatarView}>
+              {candidate.avatar ? (
+                <Image
+                  resizeMode="cover"
+                  source={{ uri: `${settings.imageUrl}/${candidate.avatar}` }}
+                  style={styles.candidateImage}
+                />
+              ) : (
+                <MaterialCommunityIcons
+                  name="account"
+                  size={80}
+                  color={colors.light}
+                />
+              )}
+            </View>
 
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <>
-            <Image
-              source={
-                !aspirant.avatar
-                  ? require("../assets/images/candidate.jpg")
-                  : { uri: `${settings.imageUrl}/${aspirant.avatar}` }
-              }
-              style={styles.candidateImage}
-            />
-          </>
-        </View>
+            <View>
+              <View style={styles.nameContain}>
+                <Text style={styles.candidateName}>{candidate.name}</Text>
+              </View>
 
-        <View style={styles.details}>
-          <View style={styles.nameContain}>
-            <Text style={styles.candidateName}>{aspirant.name}</Text>
+              <View style={styles.positionsContain}>
+                <View style={styles.item}>
+                  <Text style={styles.smallText}>Current Position:</Text>
+                  <Text style={styles.mediumText}>
+                    {candidate.current_position}
+                  </Text>
+                </View>
+
+                <View style={styles.item}>
+                  <Text style={styles.smallText}>Vying for:</Text>
+                  <Text style={styles.mediumText}>
+                    {candidate.aspiring_position}
+                  </Text>
+                </View>
+
+                <View style={styles.item}>
+                  <Text style={styles.smallText}>Party:</Text>
+                  <Text style={styles.mediumText}>{candidate.party}</Text>
+                </View>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.positionsContain}>
-            <View style={styles.item}>
-              <Text style={styles.smallText}>Current Position:</Text>
-              <Text style={styles.mediumText}>{aspirant.current_position}</Text>
-            </View>
+          <TouchableWithoutFeedback>
+            <View style={styles.fullCard}>
+              <View>
+                <Text style={styles.fullText}>Profile</Text>
+                <Text style={styles.descriptionText} numberOfLines={4}></Text>
+              </View>
 
-            <View style={styles.item}>
-              <Text style={styles.smallText}>Vying for:</Text>
-              <Text style={styles.mediumText}>
-                {aspirant.aspiring_position}
-              </Text>
+              <MaterialCommunityIcons
+                name="account-circle"
+                size={70}
+                color="rgba(120, 255, 72, 0.2)"
+                style={{
+                  alignSelf: "center",
+                  justifyContent: "center",
+                  left: 12,
+                }}
+              />
             </View>
+          </TouchableWithoutFeedback>
 
-            <View style={styles.item}>
-              <Text style={styles.smallText}>Party:</Text>
-              <Text style={styles.mediumText}>{aspirant.party}</Text>
-            </View>
-          </View>
-
-          {[
-            {
-              id: 0,
-              title: "Previous Achievements",
-              desc: "View all candidate's previous achievement",
-              iconName: "award",
-              variant: "olive",
-              // route: routes.PREVIOUS_ACHIEVEMENT,
-              handlePress: () =>
-                navigation.navigate(routes.PREVIOUS_ACHIEVEMENT, {
-                  previous_achievements: aspirant.previous_achievements,
-                }),
-            },
-            {
-              id: 1,
-              title: "Blueprint",
-              desc: "View the party's setout blueprint for their proposed administration",
-              iconName: "book",
-              variant: "secondary",
-              handlePress: () =>
-                navigation.navigate(routes.BLUEPRINT_SCREEN, _id),
-            },
-          ].map((item) => (
-            <FullCard
-              desc={item.desc}
-              iconName={item.iconName}
-              key={item.id}
-              title={item.title}
-              variant={item.variant}
-              onPress={item.handlePress}
+          <View>
+            <FlatList
+              data={items}
+              keyExtractor={(individualItem) => individualItem.id.toString()}
+              renderItem={({ item }) => (
+                <Card
+                  cardColor={item.cardColor}
+                  icon={item.icon}
+                  text={item.text}
+                  onPress={() =>
+                    navigation.navigate(item.route, { user: route.params })
+                  }
+                />
+              )}
+              numColumns={2}
             />
-          ))}
+          </View>
         </View>
       </View>
-    </ScreenWrapper>
+    </LinearBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  bluePrintCard: {
-    backgroundColor: "white",
-    borderColor: colors.secondary,
-    borderRadius: 10,
-    borderWidth: 4,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 10,
-    padding: 20,
-    width: "95%",
-  },
-  bluePrintText: {
-    width: "70%",
-  },
-  cards: {
-    alignItems: "center",
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-  cardDesc: {
-    fontFamily: "Inter",
-    fontSize: 14,
-  },
-  cardTitle: {
-    color: colors.secondary,
-    fontFamily: "PoppinsBold",
-    fontSize: 20,
+  avatarView: {
+    borderColor: colors.white,
+    borderRadius: 90,
+    borderWidth: 8,
+    height: 180,
+    overflow: "hidden",
+    width: 180,
   },
   candidateDetailContain: {
     alignItems: "center",
+    bottom: 40,
     width: "100%",
   },
   candidateName: {
-    // color: colors.secondary_100,
+    // color: colors.1,
     fontFamily: "PoppinsBold",
-    fontSize: 22,
+    fontSize: 20,
   },
   candidateImage: {
-    borderColor: colors.white,
-    borderRadius: 100,
-    borderWidth: 8,
-    height: 120,
-    top: 40,
-    width: 120,
-  },
-  container: {
-    alignItems: "center",
-    backgroundColor: colors.white,
-    width: "100%",
     height: "100%",
+    width: "100%",
+  },
+  commentButton: {
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "rgba(229, 229, 229, 0.6)",
+    borderRadius: 20,
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: 2,
+    width: 160,
+  },
+  commentIcon: {
+    color: "rgba(229, 229, 229, 0.6)",
+    fontSize: 15,
+    marginRight: 8,
+  },
+  containView: {
+    alignItems: "center",
+    backgroundColor: colors.secondary,
+    position: "absolute",
+    width: "100%",
+    height: 700,
+    left: 0,
+    top: 154,
   },
   descriptionText: {
     color: "#676767",
     fontSize: 10,
-    fontWeight: "bold",
-    fontStyle: "normal",
     width: 127,
   },
-  details: {
-    alignItems: "center",
-    flex: 1,
-    marginVertical: 10,
-    paddingHorizontal: 20,
-    top: 30,
-    width: "100%",
+  fullCard: {
+    backgroundColor: colors.white,
+    borderColor: "rgba(120, 255, 72, 0.2)",
+    borderRadius: 10,
+    borderWidth: 2,
+    elevation: 8,
+    flexDirection: "row",
+    height: 100,
+    marginVertical: 20,
+    width: 248,
+    padding: 15,
+  },
+  fullText: {
+    color: colors.darkGreen,
+    fontSize: 15,
   },
   item: {
-    alignItems: "center",
+    marginHorizontal: 15,
   },
   mediumText: {
     color: "#676767",
-    fontFamily: "PoppinsBold",
-    fontSize: 12,
-    fontStyle: "normal",
+    fontSize: 10,
     textAlign: "center",
   },
   nameContain: {
+    // flexDirection: "row",
     alignItems: "center",
   },
   positionsContain: {
-    // backgroundColor: "red",
+    alignSelf: "flex-start",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    width: "100%",
   },
   smallText: {
     color: colors.black,
     fontFamily: "InterMedium",
-    fontSize: 10,
+    fontSize: 12,
     textAlign: "center",
-  },
-  topContainer: {
-    alignItems: "center",
-    backgroundColor: colors.secondary,
-    width: "100%",
   },
 });
 
-export default CandidateProfileScreen;
+export default CandidateDetailsScreen;

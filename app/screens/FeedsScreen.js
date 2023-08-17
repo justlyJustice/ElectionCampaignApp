@@ -12,9 +12,11 @@ import ActivityIndicator from "../components/ActivityIndicator";
 
 import routes from "../navigation/routes";
 import colors from "../config/colors";
+import ErrorComponent from "../components/ErrorComponent";
 
 function FeedsScreen({ navigation }) {
   const {
+    refetch,
     request: loadFeeds,
     data: feeds,
     loading,
@@ -25,59 +27,44 @@ function FeedsScreen({ navigation }) {
     loadFeeds();
   }, []);
 
-  if (error)
-    return (
-      <ScreenWrapper>
-        <View
-          style={{
-            alignItems: "center",
-            flex: 1,
-            justifyContent: "center",
-            paddingHorizontal: 20,
-          }}
-        >
-          <Text style={{ fontFamily: "InterBold" }}>
-            Couldn't get the list of candidates!.
-          </Text>
-
-          <Button title="Retry" onPress={() => loadFeeds()} />
-        </View>
-      </ScreenWrapper>
-    );
-
   return (
-    <ScreenWrapper>
-      <ActivityIndicator visible={loading} />
+    <ScreenWrapper back style={styles.container}>
+      {loading ? (
+        <ActivityIndicator visible={loading} />
+      ) : error ? (
+        <ErrorComponent onPress={() => refetch()} />
+      ) : (
+        <>
+          <View style={styles.container}>
+            <View style={styles.topTextContain}>
+              <Text style={styles.title}>Campaign Activities</Text>
+              <Text style={styles.desc}>
+                View past and ongoing campaign activities.
+              </Text>
+            </View>
 
-      <View style={styles.container}>
-        <View style={styles.topTextContain}>
-          <Text style={styles.title}>Campaign Feed</Text>
-          <Text style={styles.desc}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          </Text>
-        </View>
-
-        <ScrollView>
-          {feeds.map((feed) => (
-            <FeedCard
-              key={feed._id}
-              title={feed.headline}
-              subTitle={feed.description}
-              onPress={() =>
-                navigation.navigate(routes.FEED_DETAILS_SCREEN, feed)
-              }
-              image={feed.image}
-            />
-          ))}
-        </ScrollView>
-      </View>
+            <>
+              {feeds.map((feed) => (
+                <FeedCard
+                  key={feed._id}
+                  title={feed.headline}
+                  subTitle={feed.description}
+                  onPress={() =>
+                    navigation.navigate(routes.FEED_DETAILS_SCREEN, feed)
+                  }
+                  image={feed.image}
+                />
+              ))}
+            </>
+          </View>
+        </>
+      )}
     </ScreenWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     flex: 1,
     paddingHorizontal: 15,
   },
@@ -91,7 +78,9 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
   topTextContain: {
-    marginVertical: 20,
+    alignItems: "center",
+    marginBottom: 10,
+    width: "100%",
   },
 });
 

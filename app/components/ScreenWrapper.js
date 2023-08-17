@@ -8,24 +8,36 @@ import {
 } from "react-native";
 
 import colors from "../config/colors";
-import Screen from "./Screen";
+import ScreenHeader from "./ScreenHeader";
 
-function ScreenWrapper({ children }) {
+function Wrapper({ back, children }) {
   return (
-    <ImageBackground
-      style={[styles.background, { paddingTop: 20 }]}
-      source={require("../assets/images/screen-bg.png")}
-    >
-      <Screen>{children}</Screen>
-    </ImageBackground>
+    <>
+      <ImageBackground
+        style={[styles.background, { paddingTop: 20 }]}
+        source={require("../assets/images/screen-bg.png")}
+      >
+        <ScreenHeader back={back} />
+
+        <ScrollView
+          style={{ width: "100%" }}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={{ height: "100%", flex: 1 }}>{children}</View>
+        </ScrollView>
+      </ImageBackground>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
+    alignItems: "center",
     backgroundColor: colors.white,
     flex: 1,
+    paddingHorizontal: 15,
   },
 });
 
-export default ScreenWrapper;
+export default Wrapper;

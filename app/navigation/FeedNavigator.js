@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 const FeedNavigator = (props) => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Feeds" component={FeedsScreen} />
+      <Stack.Screen name="Home" component={FeedsScreen} />
 
       <Stack.Screen name="FeedDetails" component={FeedDetailsScreen} />
     </Stack.Navigator>

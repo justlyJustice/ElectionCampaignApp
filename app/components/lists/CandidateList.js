@@ -11,16 +11,17 @@ function CandidateList({ candidates }) {
       data={candidates}
       keyExtractor={(candidate) => candidate._id.toString()}
       contentContainerStyle={{
-        backgroundColor: "orange",
-        width: "100%",
+        // columnGap: 1,
+        // backgroundColor: "orange",
+        // width: "100%",
         padding: 10,
       }}
       renderItem={({ item }) => (
         <Candidate
-          candidateName={item.name}
-          contestingParty={item.party}
-          onPress={() => navigation.navigate(routes.CANDIDATE_PROFILE, item)}
-          image={item.avatar}
+          candidate={item}
+          onPress={() =>
+            navigation.navigate(routes.CANDIDATE_PROFILE, { candidate: item })
+          }
         />
       )}
       numColumns={2}

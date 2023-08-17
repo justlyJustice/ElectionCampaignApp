@@ -6,17 +6,25 @@ import { useNavigation } from "@react-navigation/native";
 
 import colors from "../config/colors";
 
-function ScreenHeader() {
+function ScreenHeader({ back = false }) {
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
-        <MaterialCommunityIcons
-          name="menu"
-          style={styles.icon}
-          onPress={() => navigation.toggleDrawer()}
-        />
+        {back ? (
+          <MaterialCommunityIcons
+            name="arrow-left"
+            style={styles.icon}
+            onPress={() => navigation.goBack()}
+          />
+        ) : (
+          <MaterialCommunityIcons
+            name="menu"
+            style={styles.icon}
+            onPress={() => navigation.toggleDrawer()}
+          />
+        )}
 
         <Image
           source={require("../assets/images/Logo-2.png")}
@@ -31,12 +39,12 @@ export default ScreenHeader;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 30,
+    marginVertical: 10,
     width: "100%",
   },
   icon: {
     color: colors.light,
-    fontSize: 30,
+    fontSize: 25,
   },
   topView: {
     alignItems: "center",
