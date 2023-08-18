@@ -34,11 +34,7 @@ function WelcomeScreen({ navigation }) {
           title="Admin User? Login"
         />
 
-        <Button
-          onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
-          style={styles.btn}
-          title="Frequently Asked Questions (FAQs)"
-        />
+        <Button style={styles.btn} title="Frequently Asked Questions (FAQs)" />
       </View>
     </ScreenWrapper>
   );

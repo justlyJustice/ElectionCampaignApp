@@ -3,9 +3,9 @@ import { Image, View, StyleSheet, TouchableOpacity } from "react-native";
 import Text from "../components/Text";
 
 import colors from "../config/colors";
-import AppButton from "./Button";
+import routes from "../navigation/routes";
 
-function SideDrawer(props) {
+function SideDrawer({ navigation }) {
   return (
     <View style={styles.container}>
       <Image
@@ -14,11 +14,17 @@ function SideDrawer(props) {
       />
 
       <View style={styles.drawerItems}>
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() => navigation.navigate(routes.CANDIDATES_SCREEN)}
+        >
           <Text style={styles.text}>View Candidate</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.item}>
+        <TouchableOpacity
+          style={styles.item}
+          onPress={() => navigation.navigate(routes.FEEDS_SCREEN)}
+        >
           <Text style={styles.text}>Campaign Activities</Text>
         </TouchableOpacity>
 
