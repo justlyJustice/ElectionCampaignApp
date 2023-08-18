@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Feather } from "@expo/vector-icons";
 
 import SideDrawer from "../components/SideDrawer";
 import WelcomeScreen from "../screens/WelcomeScreen";
@@ -28,6 +27,8 @@ const AppNavigator = () => {
       <Drawer.Screen name="Candidates" component={CandidateNavigator} />
 
       <Drawer.Screen component={LoginScreen} name="Login" />
+
+      <Drawer.Screen component={LoginScreen} name="FAQs" />
     </Drawer.Navigator>
   );
 };

@@ -10,18 +10,19 @@ function FeedDetailsScreen({ route }) {
   const feed = route.params;
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper back>
+      <Text style={styles.title}>{feed.headline}</Text>
+
       <Image
         style={styles.image}
         source={
           feed.image
             ? { uri: `${settings.imageUrl}/${feed.image}` }
-            : require("../assets/images/candidate.jpg")
+            : require("../assets/images/candidateImage.jpg")
         }
       />
 
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{feed.headline}</Text>
         <Text style={styles.description}>{feed.description}</Text>
         <View style={styles.userContainer}>
           {/* <ListItem
@@ -37,7 +38,7 @@ function FeedDetailsScreen({ route }) {
 
 const styles = StyleSheet.create({
   detailsContainer: {
-    padding: 20,
+    // padding: 20,
   },
   image: {
     width: "100%",
@@ -52,9 +53,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "PoppinsBold",
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 24,
     marginVertical: 10,
+    textAlign: "center",
   },
   userContainer: {
     marginVertical: 40,

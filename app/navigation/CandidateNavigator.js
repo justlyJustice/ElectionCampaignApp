@@ -4,6 +4,7 @@ import CandidateProfileScreen from "../screens/CandidateProfileScreen";
 import BlueprintScreen from "../screens/aspirant/BlueprintScreen";
 import CandidatesScreen from "../screens/aspirant/CandidatesScreen";
 import PreviousAchievementsScreen from "../screens/aspirant/PreviousAchievementsScreen";
+import PersonalProfileScreen from "../screens/aspirant/PersonalProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,10 +20,12 @@ const CandidateNavigator = (props) => {
 
       <Stack.Screen name="Blueprint" component={BlueprintScreen} />
 
-      {/* <Stack.Screen
+      <Stack.Screen name="PersonalProfile" component={PersonalProfileScreen} />
+
+      <Stack.Screen
         name="PreviousAchievements"
         component={PreviousAchievementsScreen}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

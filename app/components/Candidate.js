@@ -31,7 +31,7 @@ function Candidate({ candidate, onPress }) {
                 source={
                   candidate.avatar
                     ? { uri: `${settings.imageUrl}/${candidate.avatar}` }
-                    : require("../assets/images/candidate.jpg")
+                    : require("../assets/images/candidateImage.jpg")
                 }
                 style={styles.image}
               />

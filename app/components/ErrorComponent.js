@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
+import Button from "./Button";
 import Text from "./Text";
 
 function ErrorComponent({ text = "Retry", onPress }) {

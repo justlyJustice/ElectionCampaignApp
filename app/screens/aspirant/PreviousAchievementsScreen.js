@@ -1,53 +1,29 @@
-import { Image, View, ScrollView, StyleSheet } from "react-native";
+import { Image, View, StyleSheet } from "react-native";
 
-import LinearBackground from "../../components/LinearBackground";
+import ScreenWrapper from "../../components/ScreenWrapper";
 import Text from "../../components/Text";
 
 import colors from "../../config/colors";
-import { timeFromNow } from "../../utility/helpers";
 
 function PreviousAchievementsScreen({ route }) {
   const { previous_achievements } = route.params;
 
+  console.log(previous_achievements);
+
   return (
-    <LinearBackground colors={[colors.primary, colors.darkGreen]}>
-      <View style={styles.container}>
-        <View style={styles.textContain}>
-          <Text style={styles.title}>Previous Achievements</Text>
-          <Text style={styles.desc}>Oyeinnoah Paris</Text>
-        </View>
-
-        <ScrollView style={styles.view}>
-          {previous_achievements.map((prevAchievement) => (
-            <View key={prevAchievement._id} style={styles.previousAchievement}>
-              <Image
-                source={require("../../assets/images/engineer.png")}
-                resizeMode="cover"
-                style={{ height: 200, width: "100%" }}
-              />
-
-              <View style={styles.textContain}>
-                <Text style={styles.text}>{prevAchievement.name}</Text>
-
-                <Text style={styles.desc}>{prevAchievement.location}</Text>
-              </View>
-
-              <View>
-                <Text>{prevAchievement.date_completed}</Text>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+    <ScreenWrapper back>
+      <View style={styles.topTextContain}>
+        <Text style={styles.title}>Previous Achievements</Text>
       </View>
-    </LinearBackground>
+    </ScreenWrapper>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
+    // backgroundColor: colors.white,
     flex: 1,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     width: "100%",
   },
   desc: {
@@ -59,15 +35,17 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsBold",
     lineHeight: 20,
   },
+  previousAchievement: {
+    marginVertical: 10,
+  },
   title: {
     fontFamily: "PoppinsBold",
     fontSize: 22,
   },
-  previousAchievement: {
-    marginVertical: 10,
-  },
-  textContain: {
-    marginVertical: 20,
+  topTextContain: {
+    alignItems: "center",
+    marginBottom: 10,
+    width: "100%",
   },
   view: {
     paddingHorizontal: 20,

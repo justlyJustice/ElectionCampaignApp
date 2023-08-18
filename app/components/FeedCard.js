@@ -14,64 +14,57 @@ import settings from "../config/settings";
 function FeedCard({ title, subTitle, image, onPress }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <View style={styles.card}>
-        <Image
-          style={styles.image}
-          source={
-            image
-              ? { uri: `${settings.imageUrl}/${image}` }
-              : require("../assets/images/candidate.jpg")
-          }
-          resizeMode="cover"
-        />
+      <>
+        <View style={styles.card}>
+          <Image
+            style={styles.image}
+            source={{ uri: `${settings.imageUrl}/${image}` }}
+            resizeMode="cover"
+          />
 
-        <View style={styles.detailsContainer}>
-          <Text style={styles.title} numberOfLines={1}>
-            {title}
-          </Text>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.title}>{title}</Text>
 
-          <Text style={styles.subTitle} numberOfLines={3}>
-            {subTitle}
-          </Text>
+            {subTitle && (
+              <Text numberOfLines={2} style={styles.subTitle}>
+                {subTitle}
+              </Text>
+            )}
 
-          <View style={styles.bottomContent}>
-            <Button
-              onPress={onPress}
-              backgroundColor="secondary"
-              title="View Feed"
-              textColor="medium"
-              style={styles.btn}
-            />
-
-            {/* <Feather name="arrow-right" size={20} />
-            </Button> */}
+            <View style={styles.bottomContent}>
+              <Button
+                onPress={onPress}
+                backgroundColor="secondary"
+                title="View Activity"
+                textColor="medium"
+                style={styles.btn}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </>
     </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-  bottomContent: {
-    marginTop: 10,
-  },
   btn: {
-    // fontFamily: "InterBold",
+    fontFamily: "InterBold",
     width: "40%",
   },
   card: {
     borderRadius: 15,
     backgroundColor: colors.white,
-    marginBottom: 20,
+    marginBottom: 10,
     overflow: "hidden",
   },
   detailsContainer: {
-    padding: 20,
+    marginTop: 10,
+    // textAlign: "center",
   },
   image: {
     width: "100%",
-    height: 200,
+    height: 250,
   },
   subTitle: {
     color: colors.medium,
@@ -81,6 +74,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "PoppinsBold",
+    letterSpacing: 0,
+    lineHeight: 20,
+    textAlign: "justify",
     textTransform: "capitalize",
   },
 });

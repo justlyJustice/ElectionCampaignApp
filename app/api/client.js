@@ -1,7 +1,6 @@
 import { Alert } from "react-native";
 import { create } from "apisauce";
 
-// import authStorage from "../auth/storage";
 import cache from "../utility/cache";
 
 import settings from "../config/settings";
@@ -22,14 +21,6 @@ apiClient.axiosInstance.interceptors.request.use(null, (error) => {
 
   return Promise.reject(error);
 });
-
-// apiClient.addAsyncRequestTransform(async (request) => {
-//   const authToken = await authStorage.getToken();
-
-//   if (!authToken) return;
-
-//   request.headers["x-auth-token"] = authToken;
-// });
 
 const get = apiClient.get;
 apiClient.get = async (url, params, axiosConfig) => {

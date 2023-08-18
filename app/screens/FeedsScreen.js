@@ -64,10 +64,10 @@ function FeedsScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 15,
-  },
+  // container: {
+  //   flex: 1,
+  //   paddingHorizontal: 15,
+  // },
   desc: {
     color: colors.medium,
     fontFamily: "Inter",

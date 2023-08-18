@@ -43,11 +43,10 @@ const styles = StyleSheet.create({
     padding: 30,
     width: "100%",
   },
-
   body: {
+    color: colors.white,
     fontFamily: "InterMedium",
     fontSize: 12,
-    // lineHeight: 12,
     width: "90%",
   },
   contentView: {

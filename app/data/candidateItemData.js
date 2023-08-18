@@ -6,7 +6,7 @@ export default [
     id: 1,
     cardColor: colors.olive,
     icon: {
-      name: "award",
+      name: "map-check-outline",
       color: colors.white,
     },
     text: {
@@ -20,13 +20,13 @@ export default [
     id: 4,
     cardColor: colors.darkGreen,
     icon: {
-      name: "format-quote-close-outline",
+      name: "trophy-award",
       color: colors.white,
     },
     text: {
       color: colors.white,
       title: "Previous Achievements",
     },
-    route: routes.QUOTES,
+    route: routes.PREVIOUS_ACHIEVEMENTS,
   },
 ];

@@ -4,6 +4,8 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
+  TouchableWithoutFeedback,
+  Pressable,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -15,29 +17,25 @@ import items from "../data/candidateItemData";
 import routes from "../navigation/routes";
 import colors from "../config/colors";
 import settings from "../config/settings";
+import ScreenHeader from "../components/ScreenHeader";
+import Icon from "../components/Icon";
 
 function CandidateDetailsScreen({ navigation, route }) {
   const { candidate } = route.params;
 
   return (
-    <LinearBackground colors={[colors.white, colors.white]}>
-      <View style={{ alignSelf: "center" }}>
+    <LinearBackground colors={[colors.white, colors.secondary]}>
+      <>
+        <Icon iconName="arrow-left" onPress={() => navigation.goBack()} />
+
         <View style={styles.avatarView}>
-          {candidate.avatar ? (
-            <Image
-              resizeMode="cover"
-              source={{ uri: `${settings.imageUrl}/${candidate.avatar}` }}
-              style={styles.candidateImage}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name="account"
-              size={80}
-              color={colors.light}
-            />
-          )}
+          <Image
+            resizeMode="cover"
+            source={{ uri: `${settings.imageUrl}/${candidate.avatar}` }}
+            style={styles.candidateImage}
+          />
         </View>
-      </View>
+      </>
 
       <View style={styles.containView}>
         <View style={styles.nameContain}>
@@ -58,7 +56,14 @@ function CandidateDetailsScreen({ navigation, route }) {
           </View>
         </View>
 
-        <TouchableHighlight style={{ width: "70%" }}>
+        <Pressable
+          style={{ width: "80%" }}
+          onPress={() =>
+            navigation.navigate(routes.PERSONAL_PROFILE_SCREEN, {
+              profile: candidate.profile,
+            })
+          }
+        >
           <View style={styles.fullCard}>
             <View style={{ width: "70%" }}>
               <Text style={styles.fullText}>Personal Profile</Text>
@@ -76,26 +81,20 @@ function CandidateDetailsScreen({ navigation, route }) {
               />
             </View>
           </View>
-        </TouchableHighlight>
+        </Pressable>
 
-        <FlatList
-          data={items}
-          contentContainerStyle={{
-            columnGap: 2,
-          }}
-          keyExtractor={(individualItem) => individualItem.id.toString()}
-          renderItem={({ item }) => (
+        <View style={styles.cardList}>
+          {items.map((item) => (
             <Card
               cardColor={item.cardColor}
               icon={item.icon}
               text={item.text}
-              onPress={() =>
-                navigation.navigate(item.route, { user: route.params })
-              }
+              key={item.id}
+              onPress={() => navigation.navigate(item.route, candidate)}
+              width="45%"
             />
-          )}
-          numColumns={2}
-        />
+          ))}
+        </View>
       </View>
     </LinearBackground>
   );
@@ -103,16 +102,19 @@ function CandidateDetailsScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   avatarView: {
+    alignSelf: "center",
     borderColor: colors.white,
     borderRadius: 90,
     borderWidth: 8,
-    height: 180,
+    height: 160,
     overflow: "hidden",
-    width: 180,
+
+    width: 160,
+    zIndex: 30,
   },
   candidateDetailContain: {
     alignItems: "center",
-    bottom: 40,
+    bottom: 90,
     flex: 1,
     width: "100%",
     zIndex: -1,
@@ -126,11 +128,17 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
+  cardList: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "83%",
+  },
   containView: {
     alignItems: "center",
     backgroundColor: colors.secondary,
     flex: 1,
     paddingTop: 40,
+    top: -70,
     width: "100%",
   },
   descriptionText: {
@@ -154,31 +162,32 @@ const styles = StyleSheet.create({
     fontFamily: "PoppinsBold",
     fontSize: 18,
   },
-  item: {
-    marginHorizontal: 18,
-  },
+
   mediumText: {
     color: "#676767",
     fontSize: 10,
     textAlign: "center",
   },
   nameContain: {
+    alignItems: "center",
     marginBottom: 15,
+    marginTop: 40,
+    width: "100%",
   },
   positionsContain: {
     alignSelf: "flex-start",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    width: "100%",
+  },
+  smallCard: {
+    width: "50%",
   },
   smallText: {
     color: colors.black,
     fontFamily: "InterMedium",
     fontSize: 12,
     textAlign: "center",
-  },
-  textContain: {
-    marginVertical: 10,
-    width: "100%",
   },
 });
 

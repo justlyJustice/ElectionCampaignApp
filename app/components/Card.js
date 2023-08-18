@@ -9,11 +9,15 @@ function Card({
   icon,
   text,
   onPress,
+  style,
+  width = 118,
   ...otherProps
 }) {
   return (
     <TouchableWithoutFeedback onPress={onPress} {...otherProps}>
-      <View style={[styles.container, { backgroundColor: cardColor }]}>
+      <View
+        style={[styles.container, { backgroundColor: cardColor, width }, style]}
+      >
         {icon && (
           <MaterialCommunityIcons
             name={icon.name}
@@ -38,13 +42,13 @@ const styles = StyleSheet.create({
     height: 80,
     justifyContent: "center",
     margin: 10,
-    width: 118,
   },
   text: {
     color: colors.white,
+    fontFamily: "PoppinsMedium",
     fontSize: 12,
-    // fontWeight: "bold",
     textAlign: "center",
+    lineHeight: 15,
     width: 100,
   },
 });
