@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 
-import Button from "../components/Button";
 import FeedCard from "../components/FeedCard";
 import ScreenWrapper from "../components/ScreenWrapper";
 import Text from "../components/Text";
@@ -27,55 +26,49 @@ function FeedsScreen({ navigation }) {
     loadFeeds();
   }, []);
 
-  return (
-    <ScreenWrapper back style={styles.container}>
-      {loading ? (
-        <ActivityIndicator visible={loading} />
-      ) : error ? (
-        <ErrorComponent onPress={() => refetch()} />
-      ) : (
-        <>
-          <View style={styles.container}>
-            <View style={styles.topTextContain}>
-              <Text style={styles.title}>Campaign Activities</Text>
-              <Text style={styles.desc}>
-                View past and ongoing campaign activities.
-              </Text>
-            </View>
+  if (error) return <ErrorComponent onPress={() => refetch()} />;
 
-            <>
-              {feeds.map((feed) => (
-                <FeedCard
-                  key={feed._id}
-                  title={feed.headline}
-                  subTitle={feed.description}
-                  onPress={() =>
-                    navigation.navigate(routes.FEED_DETAILS_SCREEN, feed)
-                  }
-                  image={feed.image}
-                />
-              ))}
-            </>
-          </View>
+  return (
+    <ScreenWrapper back>
+      <ActivityIndicator visible={loading} />
+
+      <>
+        <View style={styles.topTextContain}>
+          <Text style={styles.title}>Campaign Activities</Text>
+          <Text style={styles.desc}>
+            View past and ongoing campaign activities.
+          </Text>
+        </View>
+
+        <>
+          {feeds.map((feed) => (
+            <FeedCard
+              key={feed._id}
+              title={feed.headline}
+              subTitle={feed.description}
+              onPress={() =>
+                navigation.navigate(routes.FEED_DETAILS_SCREEN, feed)
+              }
+              image={feed.image}
+            />
+          ))}
         </>
-      )}
+      </>
     </ScreenWrapper>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   paddingHorizontal: 15,
-  // },
   desc: {
     color: colors.medium,
     fontFamily: "Inter",
     fontSize: 16,
+    textAlign: "center",
   },
   title: {
     fontFamily: "PoppinsBold",
     fontSize: 22,
+    textAlign: "center",
   },
   topTextContain: {
     alignItems: "center",

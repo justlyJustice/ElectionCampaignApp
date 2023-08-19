@@ -23,7 +23,9 @@ function FeedCard({ title, subTitle, image, onPress }) {
           />
 
           <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{title}</Text>
+            <Text numberOfLines={1} style={styles.title}>
+              {title}
+            </Text>
 
             {subTitle && (
               <Text numberOfLines={2} style={styles.subTitle}>
@@ -60,11 +62,10 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     marginTop: 10,
-    // textAlign: "center",
   },
   image: {
     width: "100%",
-    height: 250,
+    height: 180,
   },
   subTitle: {
     color: colors.medium,

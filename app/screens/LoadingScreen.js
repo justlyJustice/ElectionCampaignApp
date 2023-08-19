@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     top: 120,
   },
   image: {
-    height: 300,
-    width: 300,
+    height: 200,
+    width: 200,
   },
   view: {
     alignItems: "center",

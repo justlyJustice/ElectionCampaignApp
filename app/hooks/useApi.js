@@ -5,7 +5,7 @@ import logger from "../utility/logger";
 const useApi = (apiFunc) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const request = async (...args) => {
     setLoading(true);
@@ -23,10 +23,10 @@ const useApi = (apiFunc) => {
     return res;
   };
 
-  const refetch = (...args) => {
+  const refetch = () => {
     setLoading(true);
 
-    request(...args);
+    request();
   };
 
   return {

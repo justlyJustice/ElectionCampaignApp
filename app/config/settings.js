@@ -2,12 +2,12 @@ import Constants from "expo-constants";
 
 const settings = {
   dev: {
-    apiUrl: "http://192.168.0.164:2023/api/v1",
-    imageUrl: "http://192.168.0.164:2023/uploads",
+    apiUrl: "http://192.168.0.108:2023/api/v1",
+    imageUrl: "http://192.168.0.108:2023/uploads",
   },
   staging: {
-    apiUrl: "http://192.168.0.164:2023/api/v1",
-    imageUrl: "http://192.168.0.164:2023/uploads",
+    apiUrl: "http://192.168.0.108:2023/api/v1",
+    imageUrl: "http://192.168.0.108:2023/uploads",
   },
   prod: {
     apiUrl: "https://campaign-9ja-app-production.up.railway.app/api/v1",

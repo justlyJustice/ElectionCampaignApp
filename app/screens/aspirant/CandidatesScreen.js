@@ -12,7 +12,7 @@ import colors from "../../config/colors";
 
 import useApi from "../../hooks/useApi";
 
-function CandidatesScreen({ route }) {
+function CandidatesScreen() {
   const {
     request: loadCandidates,
     data: candidates,
@@ -24,13 +24,7 @@ function CandidatesScreen({ route }) {
     loadCandidates();
   }, []);
 
-  if (error)
-    return (
-      <>
-        <Text>Couldn't get the list of candidate!.</Text>
-        <Button title="Retry" onPress={loadCandidates} />
-      </>
-    );
+  if (error) return <ErrorComponent onPress={() => refetch()} />;
 
   return (
     <>

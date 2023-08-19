@@ -56,7 +56,7 @@ function BlueprintScreen({ route }) {
     }
   };
 
-  // console.log(loading);
+  console.log(loading);
 
   return (
     <ScreenWrapper back>
