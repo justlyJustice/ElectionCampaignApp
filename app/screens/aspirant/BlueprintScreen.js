@@ -22,6 +22,8 @@ function BlueprintScreen({ route }) {
   }, []);
 
   const displayContent = () => {
+    if (loading) return <ActivityIndicator visible={loading} />;
+
     if (data) {
       const blueprint = data[0];
 
@@ -41,10 +43,6 @@ function BlueprintScreen({ route }) {
               style={styles.image}
             />
 
-            {/* <Markdown styles={styles.markdownStyles}>
-              {blueprint.description}
-            </Markdown> */}
-
             {splitTextToArray(blueprint.description).map((desc, i) => (
               <Text key={i} style={styles.description}>
                 {desc}
@@ -55,8 +53,6 @@ function BlueprintScreen({ route }) {
       }
     }
   };
-
-  console.log(loading);
 
   return (
     <ScreenWrapper back>
