@@ -26,15 +26,15 @@ function WelcomeScreen({ navigation }) {
           iconName="bookmark"
         />
 
-        <View style={styles.hr} />
+        {/* <View style={styles.hr} /> */}
 
-        <Button
+        {/* <Button
           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
           style={styles.btn}
           title="Admin User? Login"
         />
 
-        <Button style={styles.btn} title="Frequently Asked Questions (FAQs)" />
+        <Button style={styles.btn} title="Frequently Asked Questions (FAQs)" /> */}
       </View>
     </ScreenWrapper>
   );

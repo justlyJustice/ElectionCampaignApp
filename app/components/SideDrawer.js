@@ -28,9 +28,9 @@ function SideDrawer({ navigation }) {
           <Text style={styles.text}>Campaign Activities</Text>
         </TouchableOpacity>
 
-        <View style={styles.hr} />
+        {/* <View style={styles.hr} /> */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={[styles.item, { backgroundColor: colors.darkGreen }]}
         >
           <Text style={[styles.text, { color: colors.white }]}>
@@ -42,7 +42,7 @@ function SideDrawer({ navigation }) {
           style={[styles.item, { backgroundColor: colors.darkGreen }]}
         >
           <Text style={[styles.text, { color: colors.white }]}>FAQs</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
